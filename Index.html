@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Creator Studio – Free Tools for YouTube and Social Media Creators</title>
+<meta name="description" content="AI Creator Studio: free browser-based tools for YouTube titles, thumbnails, scripts, video ideas, video prompts, photo editing and social media captions. No login, no API keys.">
+<meta name="theme-color" content="#0f1115">
+<!-- Favicon placeholder: replace this data-URI with your own icon file, e.g. <link rel="icon" href="favicon.png"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236c8cff'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%230b0e14'%3E✦%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="app">
+  <aside class="side" id="side" aria-label="Main navigation">
+    <div class="brand"><span class="logo" aria-hidden="true">✦</span> AI Creator Studio</div>
+    <nav class="nav" id="nav">
+      <a href="#home" data-tool="home">🏠 Dashboard</a>
+      <p class="sec">Tools</p>
+      <a href="#youtube" data-tool="youtube">▶️ YouTube Studio</a>
+      <a href="#enhancer" data-tool="enhancer">✨ Photo Enhancer</a>
+      <a href="#thumbnail" data-tool="thumbnail">🖼️ Thumbnail Maker</a>
+      <a href="#script" data-tool="script">📝 Script Writer</a>
+      <a href="#ideas" data-tool="ideas">💡 Viral Idea Studio</a>
+      <a href="#videoprompt" data-tool="videoprompt">🎬 Video Prompt Studio</a>
+      <a href="#editor" data-tool="editor">🎨 Photo Editor</a>
+      <a href="#social" data-tool="social">📣 Social Media Studio</a>
+    </nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="content">
+    <header class="top">
+      <button type="button" class="btn ghost" id="menuBtn" aria-controls="side" aria-expanded="false">☰ Menu</button>
+      <strong id="topTitle">AI Creator Studio</strong>
+    </header>
+
+    <main id="main">
+
+      <!-- DASHBOARD -->
+      <section id="tool-home" class="tool">
+        <h1>AI Creator Studio</h1>
+        <p class="lead">Eight free tools for YouTube and social media creators. Everything runs in your browser. No login and no API keys.</p>
+        <div class="grid">
+          <a class="card" href="#youtube"><span class="ic">▶️</span><h2>YouTube Studio</h2><p>Titles, description, tags and SEO text.</p></a>
+          <a class="card" href="#enhancer"><span class="ic">✨</span><h2>Photo Enhancer</h2><p>Brightness, contrast, sharpness and before/after.</p></a>
+          <a class="card" href="#thumbnail"><span class="ic">🖼️</span><h2>Thumbnail Maker</h2><p>Text, colors, image and PNG export.</p></a>
+          <a class="card" href="#script"><span class="ic">📝</span><h2>Script Writer</h2><p>Video scripts from customizable templates.</p></a>
+          <a class="card" href="#ideas"><span class="ic">💡</span><h2>Viral Idea Studio</h2><p>Video ideas, titles and opening hooks.</p></a>
+          <a class="card" href="#videoprompt"><span class="ic">🎬</span><h2>Video Prompt Studio</h2><p>Scene-by-scene prompts for AI video tools.</p></a>
+          <a class="card" href="#editor"><span class="ic">🎨</span><h2>Photo Editor</h2><p>Crop, rotate, resize and color controls.</p></a>
+          <a class="card" href="#social"><span class="ic">📣</span><h2>Social Media Studio</h2><p>Captions, hashtags and post descriptions.</p></a>
+        </div>
+        <p class="note">Text tools use local templates and word lists, not an AI model. Photo tools use simple browser filters and cannot match AI restoration apps such as Remini.</p>
+      </section>
+
+      <!-- 1. YOUTUBE STUDIO -->
+      <section id="tool-youtube" class="tool" hidden>
+        <h1>YouTube Studio</h1>
+        <p class="lead">Template-based titles, description, tags and SEO text.</p>
+        <div class="panel form">
+          <label for="yt-topic">Video topic</label>
+          <input id="yt-topic" type="text" placeholder="e.g. Learn Excel in one hour">
+          <label for="yt-keywords">Keywords (comma separated)</label>
+          <input id="yt-keywords" type="text" placeholder="excel, tutorial, beginners">
+          <label for="yt-style">Video style</label>
+          <select id="yt-style">
+            <option value="howto">How-to / Tutorial</option>
+            <option value="list">List / Tips</option>
+            <option value="review">Review</option>
+            <option value="story">Story / Vlog</option>
+          </select>
+          <button type="button" class="btn" id="yt-generate">Generate</button>
+        </div>
+        <div class="panel">
+          <h2>Titles</h2><textarea id="yt-titles" rows="6" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="yt-titles">Copy titles</button>
+          <h2>Description</h2><textarea id="yt-desc" rows="8" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="yt-desc">Copy description</button>
+          <h2>Tags</h2><textarea id="yt-tags" rows="3" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="yt-tags">Copy tags</button>
+          <h2>SEO text</h2><textarea id="yt-seo" rows="4" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="yt-seo">Copy SEO text</button>
+        </div>
+      </section>
+
+      <!-- 2. PHOTO ENHANCER -->
+      <section id="tool-enhancer" class="tool" hidden>
+        <h1>Photo Enhancer</h1>
+        <p class="lead">Basic browser-based adjustments. Your photo never leaves your device.</p>
+        <p class="note">These are simple filters. They are not AI restoration and cannot guarantee Remini-level results.</p>
+        <div class="panel form">
+          <label for="en-file">Choose a photo</label>
+          <input id="en-file" type="file" accept="image/*">
+          <label for="en-bright">Brightness <output id="en-bright-v">0</output></label>
+          <input id="en-bright" type="range" min="-100" max="100" value="0">
+          <label for="en-contrast">Contrast <output id="en-contrast-v">0</output></label>
+          <input id="en-contrast" type="range" min="-100" max="100" value="0">
+          <label for="en-sharp">Sharpness <output id="en-sharp-v">0</output></label>
+          <input id="en-sharp" type="range" min="0" max="100" value="0">
+          <div class="row">
+            <button type="button" class="btn ghost" id="en-reset">Reset</button>
+            <button type="button" class="btn" id="en-download">Download PNG</button>
+          </div>
+        </div>
+        <div class="compare">
+          <figure><figcaption>Before</figcaption><canvas id="en-before" width="300" height="200"></canvas></figure>
+          <figure><figcaption>After</figcaption><canvas id="en-after" width="300" height="200"></canvas></figure>
+        </div>
+      </section>
+
+      <!-- 3. THUMBNAIL MAKER -->
+      <section id="tool-thumbnail" class="tool" hidden>
+        <h1>Thumbnail Maker</h1>
+        <p class="lead">Create a 1280×720 thumbnail and export it as PNG.</p>
+        <div class="panel form">
+          <label for="th-title">Main text</label>
+          <input id="th-title" type="text" value="YOUR TITLE HERE" maxlength="60">
+          <label for="th-sub">Small text (optional)</label>
+          <input id="th-sub" type="text" maxlength="60">
+          <div class="row">
+            <div><label for="th-bg">Background 1</label><input id="th-bg" type="color" value="#1f3a8a"></div>
+            <div><label for="th-bg2">Background 2</label><input id="th-bg2" type="color" value="#6c8cff"></div>
+            <div><label for="th-color">Text color</label><input id="th-color" type="color" value="#ffffff"></div>
+          </div>
+          <label for="th-fs">Text size <output id="th-fs-v">110</output></label>
+          <input id="th-fs" type="range" min="40" max="200" value="110">
+          <label for="th-img">Background image (optional)</label>
+          <input id="th-img" type="file" accept="image/*">
+          <div class="row">
+            <button type="button" class="btn ghost" id="th-clearimg">Remove image</button>
+            <button type="button" class="btn" id="th-download">Download PNG</button>
+          </div>
+        </div>
+        <canvas id="th-canvas" class="wide" width="1280" height="720" aria-label="Thumbnail preview"></canvas>
+      </section>
+
+      <!-- 4. SCRIPT WRITER -->
+      <section id="tool-script" class="tool" hidden>
+        <h1>Script Writer</h1>
+        <p class="lead">Fills a script template with your details. It is not written by an AI model.</p>
+        <div class="panel form">
+          <label for="sc-topic">Topic</label>
+          <input id="sc-topic" type="text" placeholder="e.g. How to start a YouTube channel">
+          <label for="sc-template">Template</label>
+          <select id="sc-template">
+            <option value="tutorial">Tutorial</option>
+            <option value="story">Story</option>
+            <option value="review">Review</option>
+          </select>
+          <label for="sc-tone">Tone</label>
+          <select id="sc-tone">
+            <option value="friendly">Friendly</option>
+            <option value="professional">Professional</option>
+            <option value="energetic">Energetic</option>
+          </select>
+          <label for="sc-points">Main points (one per line)</label>
+          <textarea id="sc-points" rows="4" placeholder="Point one&#10;Point two&#10;Point three"></textarea>
+          <label for="sc-cta">Call to action</label>
+          <input id="sc-cta" type="text" value="Like, subscribe and share this video.">
+          <button type="button" class="btn" id="sc-generate">Generate script</button>
+        </div>
+        <div class="panel">
+          <textarea id="sc-out" rows="14" readonly aria-label="Script output"></textarea>
+          <button type="button" class="btn ghost" data-copy="sc-out">Copy script</button>
+        </div>
+      </section>
+
+      <!-- 5. VIRAL IDEA STUDIO -->
+      <section id="tool-ideas" class="tool" hidden>
+        <h1>Viral Idea Studio</h1>
+        <p class="lead">Idea, title and hook formulas filled with your niche. These are not trend predictions.</p>
+        <div class="panel form">
+          <label for="vi-niche">Niche or topic</label>
+          <input id="vi-niche" type="text" placeholder="e.g. home workouts">
+          <label for="vi-count">Number of ideas</label>
+          <select id="vi-count"><option>5</option><option selected>8</option><option>12</option></select>
+          <button type="button" class="btn" id="vi-generate">Generate ideas</button>
+        </div>
+        <div class="panel">
+          <h2>Video ideas and titles</h2><textarea id="vi-ideas" rows="8" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="vi-ideas">Copy ideas</button>
+          <h2>Opening hooks</h2><textarea id="vi-hooks" rows="6" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="vi-hooks">Copy hooks</button>
+        </div>
+      </section>
+
+      <!-- 6. VIDEO PROMPT STUDIO -->
+      <section id="tool-videoprompt" class="tool" hidden>
+        <h1>Video Prompt Studio</h1>
+        <p class="lead">Builds scene-by-scene prompt text. To make the actual video, paste it into an external AI video tool.</p>
+        <div class="panel form">
+          <label for="vp-subject">Subject or story idea</label>
+          <input id="vp-subject" type="text" placeholder="e.g. a lone astronaut exploring a red desert">
+          <label for="vp-style">Visual style</label>
+          <select id="vp-style">
+            <option>cinematic</option><option>realistic documentary</option><option>anime</option><option>3D animation</option><option>vintage film</option>
+          </select>
+          <label for="vp-mood">Mood</label>
+          <select id="vp-mood">
+            <option>calm</option><option>epic</option><option>mysterious</option><option>joyful</option><option>dramatic</option>
+          </select>
+          <label for="vp-ratio">Aspect ratio</label>
+          <select id="vp-ratio"><option>16:9</option><option>9:16</option><option>1:1</option></select>
+          <label for="vp-scenes">Number of scenes</label>
+          <input id="vp-scenes" type="number" min="1" max="10" value="4">
+          <button type="button" class="btn" id="vp-generate">Generate prompts</button>
+        </div>
+        <div class="panel">
+          <textarea id="vp-out" rows="14" readonly aria-label="Video prompts output"></textarea>
+          <button type="button" class="btn ghost" data-copy="vp-out">Copy prompts</button>
+        </div>
+      </section>
+
+      <!-- 7. PHOTO EDITOR -->
+      <section id="tool-editor" class="tool" hidden>
+        <h1>Photo Editor</h1>
+        <p class="lead">Crop, rotate, resize and adjust colors. Processing stays on your device.</p>
+        <div class="panel form">
+          <label for="ed-file">Choose a photo</label>
+          <input id="ed-file" type="file" accept="image/*">
+          <label for="ed-crop">Crop</label>
+          <select id="ed-crop">
+            <option value="free">Original (no crop)</option>
+            <option value="1">1:1 square</option>
+            <option value="1.7778">16:9 landscape</option>
+            <option value="0.5625">9:16 portrait</option>
+            <option value="0.8">4:5 portrait</option>
+          </select>
+          <div class="row">
+            <button type="button" class="btn ghost" id="ed-rl">⟲ Rotate left</button>
+            <button type="button" class="btn ghost" id="ed-rr">Rotate right ⟳</button>
+          </div>
+          <label for="ed-scale">Resize <output id="ed-scale-v">100</output>%</label>
+          <input id="ed-scale" type="range" min="10" max="100" value="100">
+          <label for="ed-bright">Brightness <output id="ed-bright-v">0</output></label>
+          <input id="ed-bright" type="range" min="-100" max="100" value="0">
+          <label for="ed-contrast">Contrast <output id="ed-contrast-v">0</output></label>
+          <input id="ed-contrast" type="range" min="-100" max="100" value="0">
+          <label for="ed-sat">Saturation <output id="ed-sat-v">0</output></label>
+          <input id="ed-sat" type="range" min="-100" max="100" value="0">
+          <div class="row">
+            <button type="button" class="btn ghost" id="ed-reset">Reset</button>
+            <button type="button" class="btn" id="ed-download">Download PNG</button>
+          </div>
+        </div>
+        <canvas id="ed-canvas" class="wide" width="300" height="200" aria-label="Photo editor preview"></canvas>
+        <p id="ed-info" class="note"></p>
+      </section>
+
+      <!-- 8. SOCIAL MEDIA STUDIO -->
+      <section id="tool-social" class="tool" hidden>
+        <h1>Social Media Studio</h1>
+        <p class="lead">Template-based captions, hashtags and post descriptions.</p>
+        <div class="panel form">
+          <label for="so-topic">Post topic</label>
+          <input id="so-topic" type="text" placeholder="e.g. new coffee shop opening">
+          <label for="so-keywords">Keywords (comma separated)</label>
+          <input id="so-keywords" type="text" placeholder="coffee, local, weekend">
+          <label for="so-platform">Platform</label>
+          <select id="so-platform">
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="x">X (Twitter)</option>
+            <option value="linkedin">LinkedIn</option>
+          </select>
+          <label for="so-tone">Tone</label>
+          <select id="so-tone">
+            <option value="friendly">Friendly</option>
+            <option value="professional">Professional</option>
+            <option value="fun">Fun</option>
+          </select>
+          <button type="button" class="btn" id="so-generate">Generate</button>
+        </div>
+        <div class="panel">
+          <h2>Captions</h2><textarea id="so-captions" rows="8" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="so-captions">Copy captions</button>
+          <h2>Hashtags</h2><textarea id="so-tags" rows="3" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="so-tags">Copy hashtags</button>
+          <h2>Post description</h2><textarea id="so-desc" rows="5" readonly></textarea>
+          <button type="button" class="btn ghost" data-copy="so-desc">Copy description</button>
+        </div>
+      </section>
+
+      <!-- ADVERTISEMENT AREA (shared, below every tool; kept away from buttons and navigation).
+           This is only an empty reserved space. When you are approved by Google AdSense,
+           paste the official ad code from YOUR AdSense account inside the div below.
+           No ad script is loaded until you do that. -->
+      <aside class="ad-slot" aria-label="Advertisement area">
+        <span class="ad-label">Advertisement</span>
+        <div id="ad-slot-main" class="ad-box"><!-- OFFICIAL ADSENSE CODE GOES HERE LATER --></div>
+      </aside>
+
+    </main>
+
+    <footer class="foot">
+      <!-- Add these links when the pages exist:
+           <a href="about.html">About</a> <a href="privacy.html">Privacy Policy</a>
+           <a href="terms.html">Terms of Use</a> <a href="contact.html">Contact</a> -->
+      <nav class="foot-links" id="footLinks" aria-label="Footer"></nav>
+      <p>© AI Creator Studio. Text tools use local templates. Photo tools use basic browser filters.</p>
+    </footer>
+  </div>
+</div>
+
+<nav class="bottom" aria-label="Quick navigation">
+  <a href="#home" data-tool="home"><span aria-hidden="true">🏠</span>Home</a>
+  <button type="button" id="bottomMenu"><span aria-hidden="true">🧰</span>All tools</button>
+</nav>
+
+<script src="script.js"></script>
+</body>
+                                          </html>
