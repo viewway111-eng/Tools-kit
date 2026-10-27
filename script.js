@@ -9,7 +9,7 @@
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
-  function val(id) { return $(id).value.trim(); }
+  function val(id) { var el = $(id); return el ? el.value.trim() : ""; }
   function pick(arr, i) { return arr[i % arr.length]; }
   function shuffle(arr) {
     var a = arr.slice(), i, j, t;
@@ -37,7 +37,7 @@
     setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 2200);
   }
   function need(id, msg) {
-    if (!val(id)) { toast(msg); $(id).focus(); return false; }
+    if (!val(id)) { toast(msg); var el = $(id); if (el) el.focus(); return false; }
     return true;
   }
   function later(fn) {
@@ -48,7 +48,7 @@
     };
   }
   function setRange(id, v) {
-    $(id).value = v;
+    var el = $(id); if (el) el.value = v;
     var o = $(id + "-v");
     if (o) o.textContent = v;
   }
@@ -61,7 +61,6 @@
       setTimeout(function () { URL.revokeObjectURL(u); }, 1000);
     }, "image/png");
   }
-  /* Opens an image file and returns it as a canvas no larger than maxSide pixels. */
   function loadImage(file, maxSide, cb) {
     if (!file) return;
     if (!/^image\//.test(file.type)) { toast("Please choose an image file"); return; }
@@ -78,7 +77,6 @@
     img.onerror = function () { URL.revokeObjectURL(url); toast("Could not open this image"); };
     img.src = url;
   }
-  /* Brightness (-100..100), contrast (-100..100), saturation (-100..100), sharpness (0..100). */
   function adjust(ctx, w, h, b, c, sat, sharp) {
     if (!b && !c && !sat && !sharp) return;
     var d = ctx.getImageData(0, 0, w, h), p = d.data, i, r, g, bl, gray;
@@ -147,7 +145,7 @@
     var b = e.target.closest ? e.target.closest("[data-copy]") : null;
     if (!b) return;
     var el = $(b.getAttribute("data-copy"));
-    if (!el.value) { toast("Nothing to copy yet"); return; }
+    if (!el || !el.value) { toast("Nothing to copy yet"); return; }
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(el.value).then(function () { toast("Copied"); }, function () { fallbackCopy(el); });
     } else { fallbackCopy(el); }
@@ -352,4 +350,7 @@
     cw = Math.max(1, Math.round(cw)); ch = Math.max(1, Math.round(ch));
     var cx = Math.round((rw - cw) / 2), cy = Math.round((rh - ch) / 2);
     var s = +$("ed-scale").value / 100, ow = Math.max(1, Math.round(cw * s)), oh = Math.max(1, Math.round(ch * s));
-    var o = $("ed-canvas"), c = o.getContext("
+    var o = $("ed-canvas"), c = o.getContext("2d");
+    o.width = ow; o.height = oh;
+    c.drawImage(r, cx, cy, cw, ch, 0, 0, ow, oh);
+    adjust(c, ow, oh, +
